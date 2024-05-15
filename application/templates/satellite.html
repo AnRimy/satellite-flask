@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Подключение стилей CSS -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/satellite.css')}}">
+    <!-- Заголовок страницы с номером спутника -->
+    <title>Спутник-{{ satellite.number }}</title>
+</head>
+<body>
+    <!-- Заголовок с названием и уникальным номером спутника -->
+    <h1>
+        Название: {{satellite.name}}<br/>
+        Уникальный номер: {{ satellite.number }}</h1>
+    <!-- Блок с дополнительной информацией о спутнике -->
+    <h2>
+        <!-- Статус спутника -->
+        Статус: {{ satellite.status }}<br/>
+        <!-- Цель полёта -->
+        Цель полёта: {{satellite.target }}<br/>
+        <!-- Дата запуска спутника -->
+        Дата запуска: {{ satellite.dataStart }}<br/>
+        <!-- Масса спутника -->
+        Масса: {{ satellite.massa }} кг<br/>
+        <!-- Страна производства спутника -->
+        Страна: {{ satellite.country }}
+    </h2>
+    <!-- Описание спутника и изображение -->
+    <div class="desc-satellite">
+        <!-- Описание спутника -->
+        {{ satellite.desc }}
+        <!-- Изображение спутника -->
+        <img class="image" src="/static/images/{{ satellite.image_path }}" alt="Пример изображения">
+    </div>
+</body>
+</html>

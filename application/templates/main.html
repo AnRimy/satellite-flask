@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Подключение стилей CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <!-- Подключение скриптов JavaScript -->
+    <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+    <title>Список спутников</title>
+</head>
+<body>
+    <!-- Верхняя панель с поиском и кнопкой администратора -->
+    <div class="top-panel">
+        <input class="search" type="text" placeholder="Search">
+        <button class="button-admin">Админ панель</button>
+    </div>
+
+    <!-- Контейнер для списка спутников -->
+    <div class="list-info-satellite">
+        <h2 class="text-list-satellite">Список спутников</h2>
+        {% for satellite in satellites %}
+            <!-- Карточка спутника -->
+            <div class="small-block" data-status="{{ satellite.status }}">
+                <!-- Изображение спутника -->
+                <img class="image" src="/static/images/{{ satellite.image_path }}" alt="Пример изображения">
+                <!-- Номер спутника -->
+                <h3>{{ satellite.number }}</h3>
+                <!-- Имя спутника -->
+                <p><strong>Имя:</strong> {{ satellite.name }}</p>
+                <!-- Статус спутника -->
+                <p><strong>Статус:</strong> {{ satellite.status }}</p>
+                <!-- Ссылка на страницу с подробной информацией о спутнике -->
+                <a href="{{ url_for('satellite_details', satellite_number=satellite.number) }}" class="button-detailed">Подробнее</a>
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- Левая панель с кнопкой фильтрации и кнопкой сброса фильтров -->
+    <div class="left-panel">
+        <a href="#" class="button filter-button" data-filter="active">Активные</a>
+        <a href="#" class="button reset-button">Сбросить фильтры</a>
+    </div>
+</body>
+</html>
