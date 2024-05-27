@@ -10,11 +10,25 @@
     <title>Список спутников</title>
 </head>
 <body>
-    <!-- Верхняя панель с поиском и кнопкой администратора -->
-    <div class="top-panel">
-        <input class="search" type="text" placeholder="Search">
-        <button class="button-admin">Админ панель</button>
+<!-- Верхняя панель с поиском и кнопкой администратора -->
+<div class="top-panel">
+    <input class="search" type="text" placeholder="Search">
+    <button class="button-admin" onclick="showAdminModal()">Админ панель</button>
+</div>
+
+<!-- Модальное окно для ввода пароля администратора -->
+<div id="adminModalBg" class="modal-bg" style="display:none;" onclick="closeAdminModal()">
+    <div id="adminModal" class="modal-content" onclick="event.stopPropagation()">
+        <span class="close" onclick="closeAdminModal()">&times;</span>
+        <form id="adminForm" method="POST" action="/admin">
+            <label for="adminPassword">Пароль:</label>
+            <input type="password" id="adminPassword" name="password" required onclick="event.stopPropagation()">
+            <button type="submit">Вход</button>
+        </form>
     </div>
+</div>
+
+
 
     <!-- Контейнер для списка спутников -->
     <div class="list-info-satellite">
@@ -41,5 +55,35 @@
         <a href="#" class="button filter-button" data-filter="active">Активные</a>
         <a href="#" class="button reset-button">Сбросить фильтры</a>
     </div>
+
+    <!-- Модальное окно для ввода пароля администратора -->
+    <div id="adminModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeAdminModal()">&times;</span>
+            <form id="adminForm" method="POST" action="/admin">
+                <label for="adminPassword">Пароль:</label>
+                <input type="password" id="adminPassword" name="password" required>
+                <button type="submit">Вход</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Подключение основного скрипта -->
+    <script>
+        function showAdminModal() {
+            document.getElementById('adminModal').style.display = 'block';
+        }
+
+        function closeAdminModal() {
+            document.getElementById('adminModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            var modal = document.getElementById('adminModal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 </body>
 </html>

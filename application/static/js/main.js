@@ -65,3 +65,16 @@ document.addEventListener('DOMContentLoaded', function() {
         searchInput.value = '';
     });
 });
+
+
+
+
+
+// main.js
+function showAdminModal() {
+    document.getElementById('adminModalBg').style.display = 'block';
+}
+
+function closeAdminModal() {
+    document.getElementById('adminModalBg').style.display = 'none';
+}
